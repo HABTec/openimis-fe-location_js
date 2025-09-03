@@ -51,6 +51,19 @@ class HealthFacilityMasterPanel extends FormPanel {
     return shouldValidate;
   };
 
+  validateId = (edited) => {
+    if (!!edited) {
+      if (edited.bankAccount) {
+        if (edited.bankAccount?.length < 13 || edited.bankAccount?.length > 13 || isNaN(Number(edited.bankAccount))) {
+          return "Invalid CBE Account Number";
+        }
+      }
+      else {
+        return null;
+      }
+    }
+  }
+
   render() {
     const {
       classes,
@@ -337,6 +350,25 @@ class HealthFacilityMasterPanel extends FormPanel {
                 value={edited.email}
                 readOnly={readOnly}
                 onChange={(v, s) => this.updateAttribute("email", v)}
+              />
+            </Grid>
+          }
+        />
+         <ControlledField
+          module="location"
+          id="HealthFacility.bankAccount"
+          field={
+            <Grid item xs={2} className={classes.item}>
+             <TextInput
+                module="location"
+                label="HealthFacilityForm.bankAccount"
+                name="bankAccount"
+                value={edited.bankAccount ? edited.bankAccount : ""}
+                readOnly={readOnly}
+                required={true}
+                error={this.validateId(edited)}
+                
+                onChange={(v, s) => this.updateAttribute("bankAccount", v)}
               />
             </Grid>
           }

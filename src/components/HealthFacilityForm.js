@@ -109,13 +109,23 @@ class HealthFacilityForm extends Component {
   onEditedChanged = (healthFacility) => {
     this.setState({ healthFacility, newHealthFacility: false });
   };
+   validateId = (bankAccount) => {
+    if(bankAccount){
+      if (bankAccount.length < 13 || bankAccount?.length > 13 || isNaN(Number(bankAccount))) {
+        return false
+      } 
+    }
+    return true;
+  }
 
   canSave = () => {
     // TODO - after such component is available, add contract dates as date range, not two separate dates
     if (this.state.isSaved) return false;
+    if(!this.validateId(this.state.healthFacility.bankAccount)) return false;
     if (!this.state.healthFacility.code) return false;
     if (this.props.isHFCodeValid === false) return false;
     if (!this.state.healthFacility.name) return false;
+    if (!this.state.healthFacility.bankAccount) return false;
     if (!this.state.healthFacility.location) return false;
     if (!this.state.healthFacility.legalForm) return false;
     if (!this.state.healthFacility.level) return false;

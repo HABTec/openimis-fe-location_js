@@ -104,6 +104,7 @@ export function fetchHealthFacility(mm, healthFacilityUuid, healthFacilityCode) 
     "address",
     "phone",
     "fax",
+    "bankAccount",
     "email",
     "legalForm{code}",
     "level",
@@ -137,6 +138,7 @@ export function fetchHealthFacilitySummaries(filters) {
     "name",
     "careType",
     "phone",
+    "bankAccount",
     "fax",
     "email",
     "level",
@@ -229,6 +231,7 @@ function formatLocationGQL(location) {
     ${location.uuid !== undefined && location.uuid !== null ? `uuid: "${location.uuid}"` : ""}
     code: "${formatGQLString(location.code)}"
     name: "${formatGQLString(location.name)}"
+    ${!!location.bankAccount ? `bankAccount: "${location.bankAccount}"` : ""}
     ${!!location.parentUuid ? `parentUuid: "${location.parentUuid}"` : ""}
     ${!!location.malePopulation ? `malePopulation: ${location.malePopulation}` : ""}
     ${!!location.femalePopulation ? `femalePopulation: ${location.femalePopulation}` : ""}
@@ -310,6 +313,7 @@ function formatHealthFacilityGQL(hf) {
     level: "${hf.level}"
     legalFormId: "${hf.legalForm.code}"
     careType: "${hf.careType}"
+    bankAccount: "${hf.bankAccount}"
     ${!!hf.accCode ? `accCode: "${hf.accCode}"` : ""}
     ${!!hf.subLevel ? `subLevelId: "${hf.subLevel.code}"` : ""}
     ${!!hf.address ? `address: "${formatGQLString(hf.address)}"` : ""}
