@@ -168,6 +168,7 @@ export function fetchLocations(levels, type, parent) {
     "type",
     "code",
     "name",
+    "bankAccount",
     "malePopulation",
     "femalePopulation",
     "otherPopulation",

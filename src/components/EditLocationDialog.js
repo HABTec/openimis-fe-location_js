@@ -27,6 +27,18 @@ class EditLocationDialog extends Component {
     super(props);
     this.codeMaxLength = props.modulesManager.getConf("fe-location", "locationForm.codeMaxLength", 8);
   }
+  validateId = (edited) => {
+      if (!!edited) {
+        if (edited.bankAccount) {
+          if (edited.bankAccount?.length < 13 || edited.bankAccount?.length > 13 || isNaN(Number(edited.bankAccount))) {
+            return "Invalid CBE Account Number";
+          }
+        }
+        else {
+          return null;
+        }
+      }
+    }
 
   keysFunction = (event) => {
     if (!!this.props.open) {
@@ -104,6 +116,7 @@ class EditLocationDialog extends Component {
       isCodeValid,
       isCodeValidating,
       codeValidationError,
+      type
     } = this.props;
 
     if (this.props.open === true && !this.props.location) {
@@ -137,6 +150,16 @@ class EditLocationDialog extends Component {
                 value={!!this.state.data ? this.state.data.name : null}
                 onChange={(v) => this.changeData("name", v)}
               />
+              {
+                type === 2  ? (
+                  <TextInput
+                    module="location"
+                    label="EditDialog.bankAccount"
+                    value={!!this.state.data ? this.state.data.bankAccount : null}
+                    onChange={(v) => this.changeData("bankAccount", v)}
+                    error={!!this.state.data ? this.validateId(this.state.data) : null}
+                  />) : null
+              }
               {withCaptation && (
                 <Grid container>
                   <Grid item xs={6}>
@@ -220,6 +243,16 @@ class EditLocationDialog extends Component {
                 value={!!this.state.data ? this.state.data.name : null}
                 onChange={(v) => this.changeData("name", v)}
               />
+               {
+                type === 2  ? (
+                  <TextInput
+                    module="location"
+                    label="EditDialog.bankAccount"
+                    value={!!this.state.data ? this.state.data.bankAccount : null}
+                    onChange={(v) => this.changeData("bankAccount", v)}
+                    error={!!this.state.data ? this.validateId(this.state.data) : null}
+                  />) : null
+              }
               {withCaptation && (
                 <Grid container>
                   <Grid item xs={6}>

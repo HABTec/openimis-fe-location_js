@@ -78,6 +78,7 @@ class ActionDialogs extends Component {
           onSave={save}
           onCancel={() => changeState({ editOpen: null })}
           withCaptation={withCaptation}
+          type={type}
         />
         <MoveLocationDialog
           title={formatMessageWithValues(intl, "location", "MoveDialog.title", args)}
