@@ -24,6 +24,8 @@ import LocationCascader from "./pickers/LocationCascader";
 import FSPLocationPicker from "./pickers/FSPLocationPicker";
 import LocationTypePicker from "./pickers/LocationTypePicker";
 import messages_en from "./translations/en.json";
+import messages_am from "./translations/am.json";
+import messages_om from "./translations/om.json";
 import reducer from "./reducer";
 
 import { LOCATION_SUMMARY_PROJECTION, nestParentsProjections } from "./utils";
@@ -34,7 +36,7 @@ const ROUTE_HEALTH_FACILITIES = "location/healthFacilities";
 const ROUTE_HEALTH_FACILITY_EDIT = "location/healthFacility";
 
 const DEFAULT_CONFIG = {
-  "translations": [{ key: "en", messages: messages_en }],
+  "translations": [{ key: "en", messages: messages_en },{ key: "am", messages: messages_am },{ key: "om", messages: messages_om }],
   "reducers": [{ key: "loc", reducer: reducer }], // location is the default used by syncHistoryWithStore...
   "refs": [
     { key: "location.route.healthFacilities", ref: ROUTE_HEALTH_FACILITIES },
