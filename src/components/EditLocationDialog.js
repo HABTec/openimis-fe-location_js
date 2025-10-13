@@ -160,46 +160,7 @@ class EditLocationDialog extends Component {
                     error={!!this.state.data ? this.validateId(this.state.data) : null}
                   />) : null
               }
-              {withCaptation && (
-                <Grid container>
-                  <Grid item xs={6}>
-                    <NumberInput
-                      module="location"
-                      label="EditDialog.male"
-                      max={MAX_INT_NUMBER}
-                      value={!!this.state.data ? this.state.data.malePopulation : null}
-                      onChange={(v) => this.changeData("malePopulation", v)}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <NumberInput
-                      module="location"
-                      label="EditDialog.female"
-                      max={MAX_INT_NUMBER}
-                      value={!!this.state.data ? this.state.data.femalePopulation : null}
-                      onChange={(v) => this.changeData("femalePopulation", v)}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <NumberInput
-                      module="location"
-                      label="EditDialog.other"
-                      max={MAX_INT_NUMBER}
-                      value={!!this.state.data ? this.state.data.otherPopulation : null}
-                      onChange={(v) => this.changeData("otherPopulation", v)}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <NumberInput
-                      module="location"
-                      label="EditDialog.family"
-                      max={MAX_INT_NUMBER}
-                      value={!!this.state.data ? this.state.data.families : null}
-                      onChange={(v) => this.changeData("families", v)}
-                    />
-                  </Grid>
-                </Grid>
-              )}
+              
             </DialogContentText>
           </DialogContent>
           <Divider />
