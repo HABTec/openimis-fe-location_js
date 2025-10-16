@@ -124,6 +124,17 @@ class ActionDialogs extends Component {
 const StyledActionDialogs = injectIntl(ActionDialogs);
 
 class ResultPane extends Component {
+  constructor(props) {
+    super(props); 
+    this.state = {
+      selectedLocation: 0,
+    };
+  }
+
+  setLocation = (l) => {
+    this.setState({ selectedLocation: l.uuid });
+    this.props.onSelect(l)
+  }
   render() {
     const {
       classes,
@@ -152,10 +163,11 @@ class ResultPane extends Component {
               <ListItem
                 key={`location-${type}-${idx}`}
                 button
-                selected={location && location.id === l.id}
-                onClick={(e) => !!l.uuid && !!onSelect && !readOnly && onSelect(l)}
+                // selected={location && location.id === l.id}
+                onClick={(e) => !!l.uuid && !!onSelect && !readOnly && this.setLocation(l)}
                 onDoubleClick={(e) => !!l.uuid && !readOnly && rights.includes(RIGHT_LOCATION_EDIT) && onEdit(l)}
                 className={!l.uuid || !!l.clientMutationId ? classes.lockedRow : null}
+                selected={this.state.selectedLocation === l.uuid}
               >
                 <ListItemText>
                   {l.code} - {l.name}
