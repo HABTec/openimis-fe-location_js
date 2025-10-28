@@ -20,6 +20,7 @@ import {
 import { fetchHealthFacility, clearHealthFacility } from "../actions";
 import HealthFacilityMasterPanel from "../components/HealthFacilityMasterPanel";
 import HealthFacilityCatchmentPanel from "../components/HealthFacilityCatchmentPanel";
+import HealthFacilityContractPanel from "./HealthFacilityContractPanel";
 
 const HF_FORM_CONTRIBUTION_KEY = "location.HealthFacility";
 
@@ -222,7 +223,7 @@ class HealthFacilityForm extends Component {
               canSave={this.canSave}
               readOnly={readOnly}
               HeadPanel={HealthFacilityMasterPanel}
-              Panels={[this.HealthFacilityPriceListsPanel, HealthFacilityCatchmentPanel]}
+              Panels={[this.HealthFacilityPriceListsPanel,  HealthFacilityCatchmentPanel , HealthFacilityContractPanel]}
               onEditedChanged={this.onEditedChanged}
               actions={actions}
               contributedPanelsKey={HF_FORM_CONTRIBUTION_KEY}
