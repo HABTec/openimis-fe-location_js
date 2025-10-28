@@ -57,6 +57,10 @@ function reducer(
     fetchingAllL1s: false,
     fetchedAllL1s: false,
     errorAllL1s: null,
+    healthFacilityContract: [],
+    fetchingHealthFacilityContract: false,
+    fetchedHealthFacilityContract: false,
+    errorFacilityContract: null,
   },
   action,
 ) {
@@ -331,6 +335,28 @@ function reducer(
         ...state,
         fetchingAllRegions: false,
         errorAllRegions: formatServerError(action.payload),
+      };
+    case "HEALTH_FACILITY_CONTRACT_REQ":
+      return {
+        ...state,
+        healthFacilityContract: [],
+        fetchingHealthFacilityContract: true,
+        fetchedHealthFacilityContract: false,
+        errorFacilityContract: null,
+      };
+    case "HEALTH_FACILITY_CONTRACT_RESP":
+      return {
+        ...state,
+        healthFacilityContract: parseData(action.payload.data.healthFacilityContracts ),
+        fetchingHealthFacilityContract: false,
+        fetchedHealthFacilityContract: true,
+        errorFacilityContract: formatGraphQLError(action.payload),
+      };
+    case "LOCATION_REGIONS_ERR":
+      return {
+        ...state,
+        fetchingHealthFacilityContract: false,
+        errorFacilityContract: formatServerError(action.payload),
       };
     case "LOCATION_ALL_LOCATION_0_REQ":
       return {

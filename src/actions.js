@@ -123,6 +123,20 @@ export function fetchHealthFacility(mm, healthFacilityUuid, healthFacilityCode) 
   return graphql(payload, "LOCATION_HEALTH_FACILITY");
 }
 
+export function fetchHealthFacilityContract( healthFacilityUuid) {
+  let filters = [
+    !!healthFacilityUuid ? `healthFacility_Uuid: "${healthFacilityUuid}"`  : "",
+  ];
+  let projections = [
+    "id",
+    "startDate",
+    "endDate",
+    "location{id name parent{ code name } }",
+  ];
+  const payload = formatPageQuery("healthFacilityContracts", filters, projections);
+  return graphql(payload, "HEALTH_FACILITY_CONTRACT");
+}
+
 export function clearHealthFacility() {
   return (dispatch) => {
     dispatch({ type: "LOCATION_HEALTH_FACILITY_CLEAR" });
