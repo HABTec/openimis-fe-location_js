@@ -4,6 +4,7 @@ import { injectIntl } from "react-intl";
 import { withTheme, withStyles } from "@material-ui/core/styles";
 import { Paper, List, ListItem, ListItemText, IconButton, ListItemSecondaryAction } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import {Search} from "@material-ui/icons";
 import MoveIcon from "@material-ui/icons/Shuffle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ReplayIcon from "@material-ui/icons/Replay";
@@ -228,6 +229,10 @@ class TypeLocationsPaper extends Component {
         action: (e) => onEdit(null),
         icon: <AddIcon />,
       });
+      actions.push({
+        action:  onRefresh,
+        icon: <Search />,
+      });
     }
     return (
       <Paper className={classes.paper}>
@@ -235,7 +240,7 @@ class TypeLocationsPaper extends Component {
         <SearcherPane
           module="location"
           title={title || `locations.searcher.title.${this.props.type}`}
-          refresh={onRefresh}
+          // refresh={onRefresh}
           SearchIcon={ReplayIcon}
           actions={actions}
           readOnly={readOnly}
