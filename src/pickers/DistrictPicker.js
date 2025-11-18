@@ -51,7 +51,7 @@ class DistrictPicker extends Component {
     
     if (!!region) {
       items = items.filter((d) => {
-        return d.parent.uuid === region.uuid;
+        return d.parent?.uuid === region?.uuid;
       });
     }
 
