@@ -149,5 +149,7 @@
   "location.gql_mutation_create_region_locations_perms": "Location | Mutation Create Region Locations",
   "location.gql_mutation_create_health_facilities_perms": "Location | Mutation Create Health Facilities",
   "location.gql_mutation_edit_health_facilities_perms": "Location | Mutation Edit Health Facilities",
-  "location.gql_mutation_delete_health_facilities_perms": "Location | Mutation Delete Health Facilities"
+  "location.gql_mutation_delete_health_facilities_perms": "Location | Mutation Delete Health Facilities",
+  "location.startedAt": "Started At",
+  "location.endedAt": "Ended At"
 }

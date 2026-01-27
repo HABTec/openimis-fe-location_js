@@ -17,7 +17,7 @@ import {
   parseData,
   historyPush,
 } from "@openimis/fe-core";
-import { fetchHealthFacility, clearHealthFacility } from "../actions";
+import { fetchHealthFacility, clearHealthFacility, createOrUpdateHealthFacilityContract } from "../actions";
 import HealthFacilityMasterPanel from "../components/HealthFacilityMasterPanel";
 import HealthFacilityCatchmentPanel from "../components/HealthFacilityCatchmentPanel";
 import HealthFacilityContractPanel from "./HealthFacilityContractPanel";
@@ -187,7 +187,7 @@ class HealthFacilityForm extends Component {
   };
 
   render() {
-    const { fetchingHealthFacility, fetchedHealthFacility, errorHealthFacility, add, save, back, classes } = this.props;
+    const { fetchingHealthFacility, fetchedHealthFacility,createOrUpdateHealthFacilityContract, errorHealthFacility, add, save, back, classes } = this.props;
     const { healthFacility_uuid, lockNew, healthFacility, newHealthFacility, reset, update, isSaved } = this.state;
     let readOnly = lockNew || !!healthFacility.validityTo || isSaved;
 
@@ -228,6 +228,7 @@ class HealthFacilityForm extends Component {
               actions={actions}
               contributedPanelsKey={HF_FORM_CONTRIBUTION_KEY}
               openDirty={save}
+              onSaveContract={createOrUpdateHealthFacilityContract}
             />
           </Fragment>
         )}
@@ -249,7 +250,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchHealthFacility, clearHealthFacility, journalize }, dispatch);
+  return bindActionCreators({ fetchHealthFacility, clearHealthFacility,createOrUpdateHealthFacilityContract, journalize }, dispatch);
 };
 
 export default withHistory(

@@ -131,7 +131,7 @@ export function fetchHealthFacilityContract( healthFacilityUuid) {
     "id",
     "startDate",
     "endDate",
-    "location{id name parent{ code name } }",
+    "location{id name parent{ code name parent{ code name }} }",
   ];
   const payload = formatPageQuery("healthFacilityContracts", filters, projections);
   return graphql(payload, "HEALTH_FACILITY_CONTRACT");
@@ -344,6 +344,16 @@ function formatHealthFacilityGQL(hf) {
     ${formatCatchments(hf.catchments)}
   `;
 }
+function formatHealthFacilityContractGQL(hfc) {
+  console.log(decodeId(hfc.location))
+  return `
+    ${hfc.id !== undefined && hfc.id !== null ? `id: "${hfc.id}"` : ""}
+    locationId: ${decodeId(hfc.location)}
+    startDate: "${hfc.startDate}"
+    endDate: "${hfc.endDate}"
+    healthFacilityId: ${decodeId(hfc.healthFacilityId)}
+  `;
+}
 
 export function createOrUpdateHealthFacility(hf, clientMutationLabel) {
   let action = hf.uuid !== undefined && hf.uuid !== null ? "update" : "create";
@@ -352,6 +362,21 @@ export function createOrUpdateHealthFacility(hf, clientMutationLabel) {
   return graphql(
     mutation.payload,
     ["LOCATION_MUTATION_REQ", `LOCATION_${action.toUpperCase()}_HEALTH_FACILITY_RESP`, "LOCATION_MUTATION_ERR"],
+    {
+      clientMutationId: mutation.clientMutationId,
+      clientMutationLabel,
+      requestedDateTime,
+    },
+  );
+}
+
+export function createOrUpdateHealthFacilityContract(hfc, clientMutationLabel) {
+  let action = hfc.id !== undefined && hfc.id !== null ? "update" : "create";
+  let mutation = formatMutation(`${action}HealthFacilityContract`, formatHealthFacilityContractGQL(hfc), clientMutationLabel);
+  var requestedDateTime = new Date();
+  return graphql(
+    mutation.payload,
+    ["LOCATION_MUTATION_REQ", `LOCATION_${action.toUpperCase()}_HEALTH_FACILITY_CONTRACT_RESP`, "LOCATION_MUTATION_ERR"],
     {
       clientMutationId: mutation.clientMutationId,
       clientMutationLabel,
