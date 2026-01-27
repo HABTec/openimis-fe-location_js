@@ -540,6 +540,11 @@ function reducer(
       return dispatchMutationResp(state, "updateHealthFacility", action);
     case "LOCATION_DELETE_HEALTH_FACILITY_RESP":
       return dispatchMutationResp(state, "deleteHealthFacility", action);
+    case "LOCATION_CREATE_HEALTH_FACILITY_CONTRACT_RESP":
+      console.log("reducer called")
+      return dispatchMutationResp(state, "createHealthFacilityContract", action);
+    case "LOCATION_UPDATE_HEALTH_FACILITY_CONTRACT_RESP":
+      return dispatchMutationResp(state, "updateHealthFacilityContract", action);
     case "CORE_AUTH_LOGOUT":
       return {
         ...state,
