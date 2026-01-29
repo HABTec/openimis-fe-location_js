@@ -162,7 +162,6 @@ function HealthFacilityContractPanel(props) {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add contract to facility</DialogTitle>
         <DialogContent>
-          {JSON.stringify(location)}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <PublishedComponent
